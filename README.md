@@ -1,10 +1,18 @@
 # Book_Search_CLI
 
+Package needed:
+import dotenv (pip install dotenv) in order to utilize API key
+
+To run program: 
+Enter book_search in the command line
+
+Note: the program breaks if the author, title, or publisher values are missing when retrieving book data from the Google Books API. I am working on how to fix this by not requiring these values, skipping books that don't have these values, or inserting "unknown" in place of where these values would be so that a book instance can still be created.
+
 I approached building this command line interface by taking the following steps:
 
 Structured classes to hold book inforamation and a reading list
 
-1. Created a Book class with author, title, and publisher attributes and individual methods for displaying a book instance's author, title, and puclisher to the console.
+1. Created a Book class with author, title, and publisher attributes and individual methods for displaying a book instance's author, title, and publisher to the console.
 2. Experimented with creating instances of the book class and using the class's methods on these instances.
 3. Created a ReadingList class with a reading list attribute that consisted of an emtpy list. 
 4. Created a method to add a book instance to the list attribute of the ReadingList class.

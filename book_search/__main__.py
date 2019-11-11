@@ -6,27 +6,36 @@ from dotenv import load_dotenv, find_dotenv
 load_dotenv(find_dotenv())
 
 def main():
+    # create reading list instance
     my_list = ReadingList()
 
+    # create a loop that allows the user to search for books and save a book from the search to their reading list
     for t in range(3):
+        # ask for user's search query - search keyword will appear in title of each result
         search = input('Enter your book search query: ')
-    
+        
+        # construct Google Books API URL 
         url = 'https://www.googleapis.com/books/v1/volumes?q=' 
         result_num = '&maxResults=5'
         key = '&key=' + getenv('api_key')
-
+        
+        # call API
         api_call = url + search + result_num + key
         json_data = requests.get(api_call).json()
 
-        objs = [Book(json_data['items'][i]['volumeInfo']['authors'], json_data['items'][i]['volumeInfo']['title'], json_data['items'][i]['volumeInfo']['publisher']) for i in range(5)]
-        for obj in objs:
+        # create book instances out of the Google Books API data received
+        book_objs = [Book(json_data['items'][i]['volumeInfo']['authors'], json_data['items'][i]['volumeInfo']['title'], json_data['items'][i]['volumeInfo']['publisher']) for i in range(5)]
+        for book_obj in book_objs:
             print('*'*50)
-            print('Author(s): ', obj.author)
-            print('Title: ', obj.title)
-            print('Publisher: ', obj.publisher)
+            print('Author(s): ', book_obj.author)
+            print('Title: ', book_obj.title)
+            print('Publisher: ', book_obj.publisher)
             print('*'*50)
-        my_list.add_book(objs[int(input('Enter the number of the book you want to add to your reading list (in the order it appears in your results): ')) - 1])
         
+        # request user to enter the book they wish to add to their reading list by order in results
+        my_list.add_book(book_objs[int(input('Enter the number of the book you want to add to your reading list (in the order it appears in your results): ')) - 1])
+    
+    # display books in the user's reading list    
     print('The following is on your reading list:')
     my_list.display_reading_list()
 

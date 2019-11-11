@@ -10,7 +10,7 @@ Structured classes to hold book inforamation and a reading list
 4. Created a method to add a book instance to the list attribute of the ReadingList class.
 5. Created a method to display all of the book instances inside of the reading list attribute of the ReadingList class.
 
-Created the Google Books API url for retriving book information in JSON format
+Created the Google Books API URL for retriving book information in JSON format
 
 6. Created variables to hold different aspects of the Google Books API request.
 7. Created book instances out of the JSON data received from the Google Books API by parsing the API for author, title, and publisher information about each book received. I experimented with how to print these instances to the console, eventually deciding to create a dynamic loop to create book instances out of the JSON data.

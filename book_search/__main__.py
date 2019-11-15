@@ -24,11 +24,7 @@ def main():
         # create book instances out of the Google Books API data received
         book_objs = [Book(json_data['items'][i]['volumeInfo']['authors'], json_data['items'][i]['volumeInfo']['title'], json_data['items'][i]['volumeInfo']['publisher']) for i in range(5)]
         for book_obj in book_objs:
-            print('*'*50)
-            print('Author(s): ', book_obj.author)
-            print('Title: ', book_obj.title)
-            print('Publisher: ', book_obj.publisher)
-            print('*'*50)
+            book_obj.display_book()
         
         # request user to enter the book they wish to add to their reading list by order in results
         my_list.add_book(book_objs[int(input('Enter the number of the book you want to add to your reading list (in the order it appears in your results): ')) - 1])

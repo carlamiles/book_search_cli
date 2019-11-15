@@ -12,6 +12,13 @@ class Book():
     def say_publisher(self):
         print('Publisher: {}'.format(self.publisher))
         return self
+    def display_book(self):
+        print('*'*50)
+        print('Author(s): ', self.author)
+        print('Title: ', self.title)
+        print('Publisher: ', self.publisher)
+        print('*'*50)
+        return self
 
 class ReadingList():
     def __init__(self):

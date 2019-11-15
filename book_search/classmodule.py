@@ -16,7 +16,6 @@ class Book():
 class ReadingList():
     def __init__(self):
         self.reading_list = []
-        
     def add_book(self, book):
         self.reading_list.append(book)
         print('Added book to reading list:', book.title, 'by', book.author, 'published by', book.publisher)
@@ -30,6 +29,14 @@ class ReadingList():
             book.say_publisher()
             print('*'*50)
         return self
+
+class BooksAPI():
+    def __init__(self, url, query, params, key):
+        self.url = url
+        self.params = params
+        self.query = query
+        self.key = key
+        self.link = url + query + params + key
 
     
     

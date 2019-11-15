@@ -1,9 +1,10 @@
 import sys, requests
 from .classmodule import Book, ReadingList, BooksAPI
-from os import getenv
-from dotenv import load_dotenv, find_dotenv
+# from os import getenv
+# from dotenv import load_dotenv, find_dotenv
+from .apimodule import call_api, json_data
 
-load_dotenv(find_dotenv())
+# load_dotenv(find_dotenv())
 
 def main():
     # create reading list instance
@@ -12,14 +13,15 @@ def main():
     # create a loop that allows the user to search for books and save a book from the search to their reading list
     for t in range(3):
         # ask for user's search query - search keyword will appear in title of each result
-        search = input('Enter your book search query: ')
+        # search = input('Enter your book search query: ')
         
-        # construct Google Books API URL using a BooksAPI instance
-        key = '&key=' + getenv('api_key')
+        # # construct Google Books API URL using a BooksAPI instance
+        # key = '&key=' + getenv('api_key')
         
-        google_books_api_call = BooksAPI('https://www.googleapis.com/books/v1/volumes?q=', search, '&maxResults=5', key)
+        # google_books_api_call = BooksAPI('https://www.googleapis.com/books/v1/volumes?q=', search, '&maxResults=5', key)
         
-        json_data = requests.get(google_books_api_call.link).json()
+        # json_data = requests.get(google_books_api_call.link).json()
+        call_api()
         
         # create book instances out of the Google Books API data received
         book_objs = [Book(json_data['items'][i]['volumeInfo']['authors'], json_data['items'][i]['volumeInfo']['title'], json_data['items'][i]['volumeInfo']['publisher']) for i in range(5)]
